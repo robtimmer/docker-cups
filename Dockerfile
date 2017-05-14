@@ -35,7 +35,7 @@ COPY ["entrypoint.sh", "printer-update.sh", "airprint-generate.py", "/"]
 RUN chmod +x entrypoint.sh printer-update.sh airprint-generate.py
 
 # Define volumes
-VOLUME ["/config", "/services"]
+VOLUME ["/data/config", "/data/services"]
 
 # Expose required port
 EXPOSE 631

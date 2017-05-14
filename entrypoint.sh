@@ -8,14 +8,14 @@ fi
 
 echo $USER:$PASSWORD | chpasswd
 
-mkdir -p /config/ppd
-mkdir -p /services
+mkdir -p /data/config/ppd
+mkdir -p /data/services
 rm -rf /etc/cups/ppd
-ln -s /config/ppd /etc/cups
-if [ ! -f /config/printers.conf ]; then
-    touch /config/printers.conf
+ln -s /data/config/ppd /etc/cups
+if [ ! -f /data/config/printers.conf ]; then
+    touch /data/config/printers.conf
 fi
-cp /config/printers.conf /etc/cups/printers.conf
+cp /data/config/printers.conf /etc/cups/printers.conf
 
 /printer-update.sh &
 exec /usr/sbin/cupsd -f

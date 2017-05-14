@@ -5,8 +5,8 @@ This Ubuntu-based Docker image runs a CUPS instance that is meant as a AirPrint 
 ## Configuration
 
 ### Volumes:
-* `/config`: where the persistent printer configs will be stored
-* `/services`: where the Avahi service files will be generated
+* `/data/config`: where the persistent printer configs will be stored
+* `/data/services`: where the Avahi service files will be generated
 
 ### Variables:
 * `USER`: the CUPS admin user you want created
@@ -16,9 +16,9 @@ This Ubuntu-based Docker image runs a CUPS instance that is meant as a AirPrint 
 * `631`: the TCP port for CUPS must be exposed
 
 ## Using
-CUPS will be configurable at http://<server>:631 using the USER/ PASSWORD when you do something administrative.
+CUPS will be configurable at http://[server]:631 using the USER/ PASSWORD when you do something administrative.
 
-If the `/services` volume isn't mapping to `/etc/avahi/services` then you will have to manually copy the .service files to that path at the command line.
+If the `/data/services` volume isn't mapping to `/etc/avahi/services` then you will have to manually copy the .service files to that path at the command line.
 
 ## Notes
 * CUPS doesn't write out `printers.conf` immediately when making changes even though they're live in CUPS. Therefore it will take a few moments before the services files update
