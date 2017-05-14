@@ -2,10 +2,11 @@
 set -e
 set -x
 
-if [ $(grep -ci $CUPSADMIN /etc/shadow) -eq 0 ]; then
-    useradd -r -G lpadmin -M $CUPSADMIN 
+if [ $(grep -ci $USER /etc/shadow) -eq 0 ]; then
+    useradd -r -G lpadmin -M $USER
 fi
-echo $CUPSADMIN:$CUPSPASSWORD | chpasswd
+
+echo $USER:$PASSWORD | chpasswd
 
 mkdir -p /config/ppd
 mkdir -p /services
@@ -16,5 +17,5 @@ if [ ! -f /config/printers.conf ]; then
 fi
 cp /config/printers.conf /etc/cups/printers.conf
 
-/root/printer-update.sh &
+/printer-update.sh &
 exec /usr/sbin/cupsd -f
